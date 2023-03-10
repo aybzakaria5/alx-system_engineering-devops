@@ -1,1 +1,1 @@
-this readme file is for the project : 0x00 shell basics 
+This repository contains my journey of learning some Tools with ALX 
