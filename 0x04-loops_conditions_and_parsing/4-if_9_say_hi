@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#displays n yimes s tatement then at some indix displays another one
+n=0
+while (( n < 10))
+do
+    echo "Best School"
+    if ((n == 8))
+    then 
+        echo "Hi"
+    fi
+    n=$(( n + 1))
+done
