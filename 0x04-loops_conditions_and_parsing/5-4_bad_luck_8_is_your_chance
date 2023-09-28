@@ -4,12 +4,12 @@ while (( n < 10))
 do
     if (( n == 3))
     then 
-    echo "bad luck"
+        echo "bad luck"
     elif ((n == 7))
     then
-    echo "good luck"
+        echo "good luck"
     else
-    echo "Best School"
+        echo "Best School"
     fi
     n=$(( n + 1))
 done
