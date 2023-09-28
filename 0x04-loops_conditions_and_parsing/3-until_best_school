@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#displays a text n times using untill
+n=0
+until ((n == 10))
+do  
+    echo "Best School"
+    n=$((n + 1))
+done
