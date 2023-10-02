@@ -1,4 +1,4 @@
-#!/usr/bin/bash env
+#!/usr/bin/env bash
 #lisiting the bash runing process
 
 ps auxf | grep 'bash'
