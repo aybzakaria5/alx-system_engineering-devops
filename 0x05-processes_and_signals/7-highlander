@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#beyond infinity
+
+trap signalmessage SIGTERM
+signalmessage()
+{
+    echo "I am invincible!!!"
+}
+
+while true
+do
+    echo "To infinity and beyond"
+    sleep 2
+
+done
