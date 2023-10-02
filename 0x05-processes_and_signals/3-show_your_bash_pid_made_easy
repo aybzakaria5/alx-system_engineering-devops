@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#list the bash runnig process
+
+pgrep -l bash
