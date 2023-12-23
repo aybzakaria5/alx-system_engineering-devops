@@ -1,5 +1,6 @@
-# Killing killmenow using Puppet
-exec { 'killmenow':
-  command   => '/usr/bin/pkill',
-  arguments => ['-TERM', 'killmenow'],
+# kill the process killmenow
+
+exec {'killmenow':
+  path    => '/bin/',
+  command => 'pkill killmenow'
 }
