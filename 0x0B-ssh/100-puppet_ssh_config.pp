@@ -1,7 +1,5 @@
 # puppet file
 
-mod 'puppetlabs/stdlib', '>= 4.25.1'
-
 file_line {'refuse to authenticate using a password':
   path   => '/etc/ssh/ssh_config',
   line   => 'PasswordAuthentication no',
