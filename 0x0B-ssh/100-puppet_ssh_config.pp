@@ -1,13 +1,15 @@
- # puppet file for last task
+# puppet file
 
-file_line { 'no PasswordAuthentication needed':
-    path  => '/etc/ssh/sshd_config',
-    line  => 'PasswordAuthentication no',
-    match => '^#?PasswordAuthentication',
+mod 'puppetlabs/stdlib', '>= 4.25.1'
+
+file_line {'refuse to authenticate using a password':
+  path   => '/etc/ssh/ssh_config',
+  line   => 'PasswordAuthentication no',
+  ensure => present,
 }
 
-file_line { 'using the  identity file':
-    path  => '/etc/ssh/ssh_config',
-    line  => 'IdentityFile ~/.ssh/school',
-    match => '^#?IdentityFile',
+file_line {'SSH client configuration using the private key':
+  path    => '/etc/ssh/ssh_config',
+  line    => 'IdentityFile ~/.ssh/school',
+  ensure  => present,
 }
