@@ -1,1 +1,7 @@
-#!/usr/bin/env bash
+# ssh config file is a configuration file for the OpenSSH client.
+
+Host *
+    HostName 107.23.156.230
+    User ubuntu
+    IdentityFile ~/.ssh/school
+    passwordAuthentication no
