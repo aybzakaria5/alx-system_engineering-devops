@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# update the packet list
+sudo apt-get update
+#install nginx
+apt-get install nginx -y
+
+#configure the Nginx server to makes it listen tk port 80
+echo "server {
+    listen 80;
+    387955-web-01;
+
+    location / {
+        echo 'Hello World!' > var/www/html/index.html;
+    }
+}" > /etc/nginx/sites-available/default
+
+#Restart the server
+service nginx restart
