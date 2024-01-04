@@ -1,16 +1,34 @@
 #!/usr/bin/env bash
-#Update the packet list
-sudo apt-get -y update
-#Install nginx
-sudo apt-get -y install nginx
-#Start nginx
-sudo sh -c 'echo "Hello World!" > /var/www/html/index.html'
-service nginx start
-#redirection 
-new_content="
-location /redirect_me {
-    return 301 https://www.youtube.com/watch?v=i7wFXrMZ7ts;
-}"
 
-sudo sed -i '/location \/redirect_me/,/}/c\'"$new_content" /etc/nginx/sites-enabled/default
+# Install nginx web server and Redirection
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo sh -c 'echo "Hello World!" > /var/www/html/index.nginx-debian.html'
+
+# Add the redirection location block to the Nginx configuration
+sudo bash -c 'cat <<EOL > /etc/nginx/sites-available/default
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+    index index.nginx-debian.html;
+
+    server_name _;
+
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=gfiqW1WaGbw;
+    }
+
+    # Additional server configuration...
+}
+EOL'
+
+# Enable the new configuration
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+
+# Restart nginx
 sudo service nginx restart
+
+# use this command in the server "curl -sI http://localhost/redirect_me/"
+# to check if the redirection is working
