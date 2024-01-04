@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#Update the packet list
+sudo apt-get -y update
+#Install nginx
+sudo apt-get -y install nginx
+#Start nginx
+sudo sh -c 'echo "Hello World!" > /var/www/html/index.html'
+service nginx start
+#redirection 
+new_content="
+location /redirect_me {
+    return 301 https://www.youtube.com/watch?v=i7wFXrMZ7ts;
+}"
+
+sudo sed -i '/location \/redirect_me/,/}/c\'"$new_content" /etc/nginx/sites-enabled/default
+sudo service nginx restart
