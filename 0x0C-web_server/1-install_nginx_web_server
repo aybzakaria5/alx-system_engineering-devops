@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
-# update the packet list
-sudo apt-get update -y
-#install nginx
-apt-get install nginx -y
-
-#configure the Nginx server to makes it listen tk port 80
-echo "Hello Wolrd!" > /var/www/html/index.html
-
-#Restart the server
+#Update the packet list
+sudo apt-get -y update
+#Install nginx
+sudo apt-get -y install nginx
+#Start nginx
+sudo sh -c 'echo "Hello World!" > /var/www/html/index.html'
 service nginx start
