@@ -14,8 +14,7 @@ backend servers
         balance roundrobin
         server 387955-web-01 107.23.156.230 check
         server 387955-web-02 54.146.92.28 check
-"
- >> /etc/haproxy/haproxy.cfg
+" | sudo tee -a /etc/haproxy/haproxy.cfg
 
 sudo sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/haproxy
 
