@@ -1,1 +1,5 @@
 #!/usr/bin/env bash
+# This script fixes issue by creating nginx user and restarting Nginx
+
+adduser nginx
+service nginx restart
