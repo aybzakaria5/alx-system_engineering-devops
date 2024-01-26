@@ -1,1 +1,16 @@
 #!/usr/bin/env bash
+#  1. Run Nginx as Nginx 
+# Update Nginx configuration to run as nginx user
+sed -i 's/user\s*[^;]*/user nginx;/' /etc/nginx/nginx.conf
+
+# Update Nginx default site configuration to listen on all active IPs and port 8080
+sed -i 's/listen\s*[^;]*/listen 8080;/' /etc/nginx/sites-available/default
+
+# Restart Nginx to apply the changes
+service nginx restart
+
+# Check if Nginx is running as the nginx user
+ps aux | pgrep '[n]ginx'
+
+# Check if Nginx is listening on port 8080
+nc -z 0 8080
