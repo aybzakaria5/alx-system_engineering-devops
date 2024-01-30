@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """ a script to retrive some data about users using theire given id"""
 import requests
 from sys import argv
