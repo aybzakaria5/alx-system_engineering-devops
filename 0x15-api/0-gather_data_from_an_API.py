@@ -1,39 +1,45 @@
-#!/usr/bin/python3
-"""using api to retrive some informations about a user using theire id"""
+#!/usr/bin/env python3
+""" a script to retrive some data about users using theire given id"""
 import requests
 from sys import argv
 
 
-if __name__ == "__main__":
-    employee_Id = argv[1]
-    url = "https://jsonplaceholder.typicode.com"
-    usr_endpoint = "{}/users/{}".format(url, employee_Id)
-    todo_url = "{}/todos?userId={}".format(url, employee_Id)
+def get_employee_todo_progress(employee_id):
+    base_url = "https://jsonplaceholder.typicode.com"
+    user_endpoint = f"{base_url}/users/{employee_id}"
+    todo_endpoint = f"{base_url}/todos?userId={employee_id}"
 
-    # checking status about users
-    req_0 = requests.get(usr_endpoint)
-    if req_0.status_code != 200:
-        print("unable to retrive the data , the satatu is {}"
-              .format(req_0.status_code))
-        exit(1)
-    # retriving the employee name if the statu is 200
-    usr_name = req_0.json().get("name")
-    # checking status about todos
-    req_1 = requests.get(todo_url)
-    if req_1.status_code != 200:
-        print("unable to retrive data about todos,the statu is {}"
-              .format(req_1.status_code))
-        exit(1)
-    # retriving the completed tasks
-    todo_data = req_1.json()
-    len_tasks = len(todo_data)
-    completed_tasks = [task for task in todo_data if
-                       (task.get("completed") == True)]
-    # the url will be then like :
-    # https://jsonplaceholder.typicode.com/todos?userId=2&completed=True
-    len_completed_tasks = len(completed_tasks)
+    # Fetch user data
+    user_response = requests.get(user_endpoint)
+    if user_response.status_code != 200:
+        print("Unable to retrieve user data. Status code: {}"
+              .format(user_response.status_code))
+        return
 
+    user_data = user_response.json()
+    employee_name = user_data.get("name")
+
+    # Fetch todo data
+    todo_response = requests.get(todo_endpoint)
+    if todo_response.status_code != 200:
+        print("Unable to retrieve todo data. Status code: {}"
+              .format(todo_response.status_code))
+        return
+
+    todo_data = todo_response.json()
+    total_tasks = len(todo_data)
+    completed_tasks = [tsk["title"] for tsk in todo_data if tsk["completed"]]
+
+    # Display information
     print("Employee {} is done with tasks({}/{}):"
-          .format(usr_name, len_completed_tasks, len_tasks))
-    for task in completed_tasks:
-        print("\t {}".format(task.get("title")))
+          .format(employee_name, len(completed_tasks), total_tasks))
+    for task_title in completed_tasks:
+        print(f"\t {task_title}")
+
+
+if __name__ == "__main__":
+    if len(argv) != 2 or not argv[1].isdigit():
+        print("Usage: python script_name.py <employee_id>")
+    else:
+        employee_id = int(argv[1])
+        get_employee_todo_progress(employee_id)
