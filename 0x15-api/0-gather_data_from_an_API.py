@@ -37,4 +37,3 @@ if __name__ == "__main__":
           .format(usr_name, len_completed_tasks, len_tasks))
     for task in completed_tasks:
         print("\t {}".format(task.get("title")))
-    print(todo_data)
