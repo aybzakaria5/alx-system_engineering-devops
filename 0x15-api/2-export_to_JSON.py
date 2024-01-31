@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """ a script to retrive some data about users using theire given id"""
+import json
 import requests
 from sys import argv
-import json
 
 
 def get_employee_todo_tasks(employee_id):
