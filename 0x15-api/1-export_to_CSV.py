@@ -52,4 +52,3 @@ if __name__ == "__main__":
 
     print("Employee {} tasks exported to {}".format(username, csv_filename))
     print("Total tasks: {}".format(total_tasks))
-    
