@@ -6,7 +6,7 @@ import requests
 url = "https://www.reddit.com/r/{}/about.json"
 def number_of_subscribers(subreddit):
     """function to get the number of subscribers on a subreddit"""
-    headers = {'User-agent': 'Mozilla/5.0'}
+    headers = {'User-agent': 'mir'}
     response = requests.get(url.format(subreddit), headers=headers)
     if response.status_code == 200:
         return response.json().get("data").get("subscribers")
