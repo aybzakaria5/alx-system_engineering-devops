@@ -2,6 +2,7 @@
 """module to retrive the number of subscribers on a subnet using reddit API"""
 import requests
 
+
 url = "https://www.reddit.com/r/{}/about.json"
 def number_of_subscribers(subreddit):
     """function to get the number of subscribers on a subreddit"""
